@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 document.onkeydown = function(event) {
 
-    var userGuess = event.key;
+
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         makeGuess(event.key.toLocaleLowerCase())
@@ -81,6 +81,7 @@ document.onkeydown = function(event) {
 function makeGuess(letter) {
 
     if (userGuess.indexOf(letter) === -1) {
+        //var userGuess = event.key;
         console.log(letter);
         //userGuess.push(letter);
         //evaluateGuess(letter);
