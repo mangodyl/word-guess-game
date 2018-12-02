@@ -78,6 +78,9 @@ document.onkeydown = function(event) {
 
 // function for making the guess
 
+
+// function making sure the chosen letter hasn't been used already
+
 function makeGuess(letter) {
 
     if (userGuess.indexOf(letter) === -1) {
