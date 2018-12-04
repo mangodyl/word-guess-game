@@ -28,12 +28,27 @@ var wordArray = [
 // Setting variables
 var wrongGuesses = [];
 var answerArray = [];
-var maxWrongGuesses = 10;
+var maxWrongGuesses = 7;
 var randomIndex;
 var wordIndex;
 var wins = 0;
 var losses = 0;
 var userGuess = [];
+
+// Setting up page on initial load.
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    winsSpan = document.getElementById("winSpan");
+    lossSpan = document.getElementById("lossSpan");
+    remainingSpan = document.getElementById("guesses-remaining");
+    winsSpan.innerHTML = wins;
+    lossSpan.innerHTML = losses;
+    remainingSpan.innerHTML = maxWrongGuesses;
+
+    gameReset();
+
+});
 
 
 // function on reset:
@@ -41,8 +56,10 @@ var userGuess = [];
     // wins & losses set to 0
     // empty wrongGuesses & correctGuesses arrays
 
-document.addEventListener("DOMContentLoaded", function(event) { 
-        
+function gameReset() { 
+    
+    maxWrongGuesses = 7;
+    remainingSpan.innerHTML = maxWrongGuesses;
     randomIndex = Math.floor(Math.random() * wordArray.length);
     wordIndex = wordArray[randomIndex];
     console.log(wordIndex);
@@ -61,13 +78,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     document.getElementById("activeWord").innerHTML = stringArray;
 
-    });
+    };
 
 // function to make sure key presses are letters
 
 document.onkeydown = function(event) {
-
-
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         makeGuess(event.key.toLocaleLowerCase())
