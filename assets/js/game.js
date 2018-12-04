@@ -34,14 +34,20 @@ var wordIndex;
 var wins = 0;
 var losses = 0;
 var userGuess = [];
+var winsSpan;
+var lossSpan;
+var remainingSpan;
+var wrongGuessesSpan;
 
 // Setting up page on initial load.
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
+    
     winsSpan = document.getElementById("winSpan");
     lossSpan = document.getElementById("lossSpan");
     remainingSpan = document.getElementById("guesses-remaining");
+    
     winsSpan.innerHTML = wins;
     lossSpan.innerHTML = losses;
     remainingSpan.innerHTML = maxWrongGuesses;
@@ -66,7 +72,7 @@ function gameReset() {
 
     // wins and losses
 
-    // --------------- document.getElementById("#winSpan").textContent = wins;
+    // ----- document.getElementById("#winSpan").textContent = wins;
 
     // Use random word length to determine number of underscores.
 
@@ -93,17 +99,54 @@ document.onkeydown = function(event) {
 
 // function for making the guess
 
-
-// function making sure the chosen letter hasn't been used already
-
 function makeGuess(letter) {
 
+    // function making sure the chosen letter hasn't been used already
+
     if (userGuess.indexOf(letter) === -1) {
-        //var userGuess = event.key;
+        // ----- var userGuess = event.key;
         console.log(letter);
-        //userGuess.push(letter);
-        //evaluateGuess(letter);
+        userGuess.push(letter);
+        // ----- evaluateGuess(letter);
+
+        // Replacing underscores with correct guesses
+
+        String.prototype.setCharAt = function (index, char) {
+            if (index > this.length - 1) {
+                return this.toString();
+            }
+            else {
+                return this.substr(0, index) + char + this.substr(index + 1);
+            }
+        };
+
+    // Write the wrongGuesses array out on the page
+
+    document.getElementById("wrong-letters").innerHTML = wrongGuesses;
+
     };
+
+
+
+
+
+
+
+    if (wordIndex.indexOf(letter) === -1) {
+        maxWrongGuesses--;
+
+        if (maxWrongGuesses > -1) {
+            remainingSpan.innerHTML = maxWrongGuesses;
+        }
+
+        // ----- document.getElementById("wrong-letters").innerHTML = wrongGuesses;
+
+        
+    }
+
+
+
+
 };
 
 
