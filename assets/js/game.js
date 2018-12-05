@@ -92,6 +92,7 @@ document.onkeydown = function(event) {
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         makeGuess(event.key.toLocaleLowerCase())
+        checkWin();
     };
 
 };
@@ -108,11 +109,21 @@ function makeGuess(letter) {
         console.log(letter);
         // ----- evaluateGuess(letter);
 
-        // Replacing underscores with correct guesses
+    activeWordGaps = document.getElementById("activeWord").innerText;
+    var indices = [];
 
-    if (letter === answerArray[i]) {
-        console.log("ok")
-    }
+        // Replacing underscores with correct guesses
+    for (i = 0; i < wordIndex; i++ )
+        if (wordIndex[i]=== letter) {
+            indices.push(i);
+            console.log("ok");
+        }
+
+
+
+    wrongGuesses.push(letter);
+    document.getElementById("wrong-letters").innerHTML = wrongGuesses.join(" ");
+
     
 
 
@@ -146,7 +157,13 @@ function makeGuess(letter) {
     };
 
 
-
+    function checkWin() {
+        if (answerArray.indexOf('_') === -1) {
+          alert('You Won!');
+        } else if (maxWrongGuesses === 0) {
+          alert('You Lost!');
+        }
+      }
 
 
 
