@@ -80,19 +80,19 @@ function gameReset() {
         answerArray[i] = "_";
     };
     
-    var stringArray = answerArray.join(" ");
 
-    document.getElementById("activeWord").innerHTML = stringArray;
+
+    document.getElementById("activeWord").innerHTML = answerArray.join(" ");
 
     };
 
 // function to make sure key presses are letters
 
-document.onkeydown = function(event) {
+document.onkeyup = function(event) {
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         makeGuess(event.key.toLocaleLowerCase())
-        checkWin();
+        // checkWin();
     };
 
 };
@@ -109,20 +109,26 @@ function makeGuess(letter) {
         console.log(letter);
         // ----- evaluateGuess(letter);
 
-    activeWordGaps = document.getElementById("activeWord").innerText;
-    var indices = [];
 
         // Replacing underscores with correct guesses
-    for (i = 0; i < wordIndex; i++ )
-        if (wordIndex[i]=== letter) {
-            indices.push(i);
-            console.log("ok");
-        }
+        for (i = 0; i < wordIndex.length; i++ ) {
+            if (wordIndex[i] === letter) {
+                answerArray[i] = letter;
+                console.log("ok");
 
+            }
 
+        };
+        
+        document.getElementById("activeWord").innerHTML = answerArray.join(" ");
 
-    wrongGuesses.push(letter);
-    document.getElementById("wrong-letters").innerHTML = wrongGuesses.join(" ");
+        console.log(answerArray);
+        // Adding wrong guesses onto the screen
+       
+
+            wrongGuesses.push(letter);
+            document.getElementById("wrong-letters").innerHTML = wrongGuesses.join(", ");
+    
 
     
 
@@ -150,30 +156,25 @@ function makeGuess(letter) {
         //     console.log(activeWordGaps);
         // }
 
-    // Write the wrongGuesses array out on the page
-
-    document.getElementById("wrong-letters").innerHTML = wrongGuesses;
-
-    };
 
 
-    function checkWin() {
-        if (answerArray.indexOf('_') === -1) {
-          alert('You Won!');
-        } else if (maxWrongGuesses === 0) {
-          alert('You Lost!');
-        }
-      }
+    // function checkWin() {
+    //     if (answerArray.indexOf('_') === -1) {
+    //       alert('You Won!');
+    //     } else if (maxWrongGuesses === 0) {
+    //       alert('You Lost!');
+    //     }
+    //   }
 
 
 
 
-    if (wordIndex.indexOf(letter) === -1) {
-        maxWrongGuesses--;
+    // if (wordIndex.indexOf(letter) === -1) {
+    //     maxWrongGuesses--;
 
-        if (maxWrongGuesses > -1) {
-            remainingSpan.innerHTML = maxWrongGuesses;
-        }
+    //     if (maxWrongGuesses > -1) {
+    //         remainingSpan.innerHTML = maxWrongGuesses;
+    //     }
 
         // ----- document.getElementById("wrong-letters").innerHTML = wrongGuesses;
 
