@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function gameReset() { 
     
     maxWrongGuesses = 7;
-    remainingSpan.innerHTML = maxWrongGuesses;
+    // ----- remainingSpan.innerHTML = maxWrongGuesses;
     randomIndex = Math.floor(Math.random() * wordArray.length);
     wordIndex = wordArray[randomIndex];
     console.log(wordIndex);
@@ -104,21 +104,40 @@ function makeGuess(letter) {
     // function making sure the chosen letter hasn't been used already
 
     if (userGuess.indexOf(letter) === -1) {
-        // ----- var userGuess = event.key;
-        console.log(letter);
         userGuess.push(letter);
+        console.log(letter);
         // ----- evaluateGuess(letter);
 
         // Replacing underscores with correct guesses
 
-        String.prototype.setCharAt = function (index, char) {
-            if (index > this.length - 1) {
-                return this.toString();
-            }
-            else {
-                return this.substr(0, index) + char + this.substr(index + 1);
-            }
-        };
+    if (letter === answerArray[i]) {
+        console.log("ok")
+    }
+    
+
+
+
+        // String.prototype.setCharAt = function (index, char) {
+        //     if (index > this.length - 1) {
+        //         return this.toString();
+        //     }
+        //     else {
+        //         return this.substr(0, index) + char + this.substr(index + 1);
+        //     }
+        // };
+
+        // activeWordGaps = document.getElementById("activeWord").innerText;
+        // var indices = [];
+
+        // for (var i = 0; i < wordIndex.length; i++) {
+        //     if (wordIndex[i] === letter) indices.push(i);
+        // }
+
+        // for (let i = 0; i < indices.length; i++) {
+        //     const index = indices[i];
+        //     activeWordGaps = activeWordGaps.setCharAt(index, letter);
+        //     console.log(activeWordGaps);
+        // }
 
     // Write the wrongGuesses array out on the page
 
