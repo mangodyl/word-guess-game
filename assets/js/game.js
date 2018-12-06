@@ -62,6 +62,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // empty wrongGuesses & correctGuesses arrays
 
 function gameReset() { 
+
+    answerArray = [];
+    wrongGuesses = [];
+
+    wins = 0;
+    winsSpan.innerHTML = wins;
+
+    losses = 0;
+    lossSpan.innerHTML = losses;
     
     maxWrongGuesses = 7;
     // ----- remainingSpan.innerHTML = maxWrongGuesses;
@@ -83,7 +92,27 @@ function gameReset() {
 
     document.getElementById("activeWord").innerHTML = answerArray.join(" ");
 
+};
+
+// function to generate new word without losing wins/losses
+
+function newWord() {
+
+    answerArray = [];
+    wrongGuesses = [];
+
+    randomIndex = Math.floor(Math.random() * wordArray.length);
+    wordIndex = wordArray[randomIndex];
+    console.log(wordIndex);
+
+    for (var i = 0; i < wordIndex.length; i++) {
+        answerArray[i] = "_";
     };
+
+    document.getElementById("activeWord").innerHTML = answerArray.join(" ");
+
+
+};
 
 // function to make sure key presses are letters
 

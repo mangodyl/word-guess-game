@@ -4,3 +4,11 @@ h1, h2, .jumbotron {
     text-align: center;
 }
 
+.second {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn.btn-primary.btn-lg {
+    color: white;
+}
