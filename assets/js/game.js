@@ -164,7 +164,7 @@ function makeGuess(letter) {
             document.getElementById("activeWord").innerHTML = answerArray.join(" ");
 
             wrongGuesses = [];
-            document.getElementById("#wrong-letters").innerHTML = wrongGuesses;
+            document.getElementById("wrong-letters").innerHTML = wrongGuesses;
 
 
         }
