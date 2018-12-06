@@ -37,7 +37,6 @@ var userGuess = [];
 var winsSpan;
 var lossSpan;
 var remainingSpan;
-var wrongGuessesSpan;
 
 // Setting up page on initial load.
 
@@ -116,6 +115,8 @@ function makeGuess(letter) {
                 answerArray[i] = letter;
                 console.log("ok");
 
+                checkWin();
+
             }
 
         };
@@ -125,10 +126,48 @@ function makeGuess(letter) {
         console.log(answerArray);
         // Adding wrong guesses onto the screen
        
-
+        if (answerArray.indexOf(letter) === -1) {
             wrongGuesses.push(letter);
             document.getElementById("wrong-letters").innerHTML = wrongGuesses.join(", ");
-    
+            console.log("wrong letter")
+
+            // updating the number of guesses
+            maxWrongGuesses--;
+            remainingSpan.innerHTML = maxWrongGuesses;
+            console.log(maxWrongGuesses);
+
+            checkWin();
+        };
+            
+        
+        // function to check when the game ends (called after wrong and correct guesses above) then reset, adding to wins/losses
+
+        function checkWin() {
+            if (answerArray.indexOf('_') === -1) {
+                alert('You Won!');
+                wins ++;
+                winsSpan.innerHTML = wins;
+                newGame();
+            } else if (maxWrongGuesses === 0) {
+                alert('You Lost!');
+                losses ++;
+                lossSpan.innerHTML = losses;
+                newGame();
+            }
+        };
+
+        function newGame() {
+
+            maxWrongGuesses = 7;
+            remainingSpan.innerHTML = maxWrongGuesses;
+
+            document.getElementById("activeWord").innerHTML = answerArray.join(" ");
+
+            wrongGuesses = [];
+            document.getElementById("#wrong-letters").innerHTML = wrongGuesses;
+
+
+        }
 
     
 
