@@ -22,7 +22,17 @@ var wordArray = [
     "jamiroquai",
     "muse",
     "outkast",
-    "pixies"
+    "pixies",
+    "killers",
+    "incubus",
+    "aerosmith",
+    "eagles",
+    "rush",
+    "kansas",
+    "ramones",
+    "paramore",
+    "rammstein",
+    "stereophonics",
 ]
 
 // Setting variables
@@ -53,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     gameReset();
 
+
 });
 
 
@@ -65,6 +76,7 @@ function gameReset() {
 
     answerArray = [];
     wrongGuesses = [];
+    userGuess = [];
 
     wins = 0;
     winsSpan.innerHTML = wins;
@@ -100,6 +112,7 @@ function newWord() {
 
     answerArray = [];
     wrongGuesses = [];
+    userGuess = [];
 
     randomIndex = Math.floor(Math.random() * wordArray.length);
     wordIndex = wordArray[randomIndex];
@@ -173,15 +186,26 @@ function makeGuess(letter) {
 
         function checkWin() {
             if (answerArray.indexOf('_') === -1) {
-                alert('You Won!');
                 wins ++;
                 winsSpan.innerHTML = wins;
-                newGame();
+                
+
+                setTimeout( function () {
+                    alert("You win!");
+                    newGame();
+                    newWord();
+                });
+
+                return;
+
             } else if (maxWrongGuesses === 0) {
                 alert('You Lost!');
                 losses ++;
                 lossSpan.innerHTML = losses;
                 newGame();
+                newWord();
+
+                return;
             }
         };
 
@@ -196,58 +220,11 @@ function makeGuess(letter) {
             document.getElementById("wrong-letters").innerHTML = wrongGuesses;
 
 
-        }
+        };
 
     
-
-
-
-        // String.prototype.setCharAt = function (index, char) {
-        //     if (index > this.length - 1) {
-        //         return this.toString();
-        //     }
-        //     else {
-        //         return this.substr(0, index) + char + this.substr(index + 1);
-        //     }
-        // };
-
-        // activeWordGaps = document.getElementById("activeWord").innerText;
-        // var indices = [];
-
-        // for (var i = 0; i < wordIndex.length; i++) {
-        //     if (wordIndex[i] === letter) indices.push(i);
-        // }
-
-        // for (let i = 0; i < indices.length; i++) {
-        //     const index = indices[i];
-        //     activeWordGaps = activeWordGaps.setCharAt(index, letter);
-        //     console.log(activeWordGaps);
-        // }
-
-
-
-    // function checkWin() {
-    //     if (answerArray.indexOf('_') === -1) {
-    //       alert('You Won!');
-    //     } else if (maxWrongGuesses === 0) {
-    //       alert('You Lost!');
-    //     }
-    //   }
-
-
-
-
-    // if (wordIndex.indexOf(letter) === -1) {
-    //     maxWrongGuesses--;
-
-    //     if (maxWrongGuesses > -1) {
-    //         remainingSpan.innerHTML = maxWrongGuesses;
-    //     }
-
-        // ----- document.getElementById("wrong-letters").innerHTML = wrongGuesses;
-
         
-    }
+    };
 
 
 
