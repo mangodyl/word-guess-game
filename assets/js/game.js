@@ -124,6 +124,8 @@ function newWord() {
 
     document.getElementById("activeWord").innerHTML = answerArray.join(" ");
 
+    document.getElementById("wrong-letters").innerHTML = wrongGuesses;
+
 
 };
 
